@@ -1,0 +1,7 @@
+{
+	"serverUrl" : "<url of the server>",
+	"userId" : "<login user name>",
+	"password" : "<password>",
+	"orgName" : "cloud",
+	"appName" : "main"
+}

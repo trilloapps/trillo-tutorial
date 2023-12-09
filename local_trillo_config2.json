@@ -1,0 +1,7 @@
+{
+	"serverUrl" : "https://rt.local:8020/",
+	"userId" : "admin",
+	"password" : "admin123",
+	"orgName" : "dev.cloud.anil",
+	"appName" : "main"
+}
