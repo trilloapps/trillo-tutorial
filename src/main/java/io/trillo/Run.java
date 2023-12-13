@@ -14,7 +14,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Run {
-  
+
+  private static final String ABSOLUTE_PATH = "/Users/saqib/sw/github/trillo-tutorial";
   private static Logger log = LoggerFactory.getLogger(Run.class);
   
   /* 
@@ -22,7 +23,7 @@ public class Run {
    */
   
   public static void main(String[] args) {
-    File file = new File("/absolute-path/trillo-tutorial/local_trillo_config2.json");
+    File file = new File(ABSOLUTE_PATH + "/local_trillo_config2.json");
    if (!file.exists()) {
       System.err.println("Missing tillo_config.json file, create it from sample_trillo_config.json inside the program directory");
       System.exit(-1);
@@ -42,7 +43,7 @@ public class Run {
      * file. As a practice you can use ./input_files folder for creating the input file.
      * If the function requires no parameter, pass null.
      */
-    executeFunction("SampleFunc", "/absolute-path/trillo-tutorial/input_files/InputParam.json");
+    executeFunction("SampleFunc", ABSOLUTE_PATH + "/input_files/InputParam.json");
     log.info("Done");
   }
 
