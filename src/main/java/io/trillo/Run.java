@@ -15,7 +15,10 @@ import java.util.Map;
 
 public class Run {
 
-  private static final String ABSOLUTE_PATH = "/Users/saqib/sw/github/trillo-tutorial";
+  private static final String ABSOLUTE_PATH = "/Users/saqib/sw/github/trillo-tutorial/";
+  private static final String LOCAL_CONFIG_PATH = ABSOLUTE_PATH + "local_trillo_config2.json";
+  private static final String PARAMETER_FILE_NAME = ABSOLUTE_PATH + "input_files/InputParam.json";
+  private static final String FUNCTION_NAME = "ChatUsingGenAi";
   private static Logger log = LoggerFactory.getLogger(Run.class);
   
   /* 
@@ -23,7 +26,7 @@ public class Run {
    */
   
   public static void main(String[] args) {
-    File file = new File(ABSOLUTE_PATH + "/local_trillo_config2.json");
+    File file = new File(LOCAL_CONFIG_PATH);
    if (!file.exists()) {
       System.err.println("Missing tillo_config.json file, create it from sample_trillo_config.json inside the program directory");
       System.exit(-1);
@@ -43,7 +46,7 @@ public class Run {
      * file. As a practice you can use ./input_files folder for creating the input file.
      * If the function requires no parameter, pass null.
      */
-    executeFunction("SampleFunc", ABSOLUTE_PATH + "/input_files/InputParam.json");
+    executeFunction(FUNCTION_NAME, PARAMETER_FILE_NAME);
     log.info("Done");
   }
 

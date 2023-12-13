@@ -1,7 +1,7 @@
 {
-	"serverUrl" : "https://wb.kyn-lab-1.trilloapps.com/",
-	"userId" : "saqib",
-	"password" : "",
+	"serverUrl" : "https://api.eng-dev-2-402218.trilloapps.com/",
+	"userId" : "anil",
+	"password" : "trillo@123",
 	"orgName" : "cloud",
 	"appName" : "main"
 }
