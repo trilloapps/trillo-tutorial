@@ -1,7 +1,7 @@
 {
-	"serverUrl" : "https://rt.local:8020/",
-	"userId" : "admin",
-	"password" : "admin123",
-	"orgName" : "dev.cloud.anil",
+	"serverUrl" : "https://wb.kyn-lab-1.trilloapps.com/",
+	"userId" : "saqib",
+	"password" : "",
+	"orgName" : "cloud",
 	"appName" : "main"
 }

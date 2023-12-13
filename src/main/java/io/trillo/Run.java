@@ -22,7 +22,7 @@ public class Run {
    */
   
   public static void main(String[] args) {
-    File file = new File("/Users/trishlakothari/Desktop/demoCode/trillo-java-function-private/sample_run_function_config.json");
+    File file = new File("/absolute-path/trillo-tutorial/local_trillo_config2.json");
    if (!file.exists()) {
       System.err.println("Missing tillo_config.json file, create it from sample_trillo_config.json inside the program directory");
       System.exit(-1);
@@ -42,7 +42,7 @@ public class Run {
      * file. As a practice you can use ./input_files folder for creating the input file.
      * If the function requires no parameter, pass null.
      */
-    executeFunction("SampleFunc", "/Users/trishlakothari/Desktop/demoCode/trillo-java-function-private/input_files/InputParam.json");
+    executeFunction("SampleFunc", "/absolute-path/trillo-tutorial/input_files/InputParam.json");
     log.info("Done");
   }
 
@@ -105,5 +105,4 @@ public class Run {
       log.error("Failed to call function: " + functionName, e);
     }
   }
-
 }
