@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.trillo</groupId>
-  <artifactId>trillo-java-function-private</artifactId>
+  <artifactId>trillo-tutorial</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
 
-  <name>trillo-java-function-private</name>
+  <name>trillo-tutorial</name>
   <url>http://maven.apache.org</url>
 
   <properties>
