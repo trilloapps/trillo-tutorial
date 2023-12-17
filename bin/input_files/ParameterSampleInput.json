@@ -1,8 +1,0 @@
-{
-	"param1" : "value1",
-	"param2" : "value2",
-	"list" : [
-	  {"item1" : 1},
-	  {"item2" : 2}
-	]
-}

@@ -7,3 +7,4 @@
 /.idea/vcs.xml
 /target/
 /.idea/workspace.xml
+!/local_trillo_config2.json
