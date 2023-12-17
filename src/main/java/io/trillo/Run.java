@@ -15,8 +15,8 @@ import java.util.Map;
 
 public class Run {
 
-  private static final String ABSOLUTE_PATH = "/Users/saqib/sw/github/trillo-tutorial/";
-  private static final String LOCAL_CONFIG_PATH = ABSOLUTE_PATH + "local_trillo_config2.json";
+  private static final String ABSOLUTE_PATH = "Absolute-path/trillo-tutorial/";
+  private static final String LOCAL_CONFIG_PATH = ABSOLUTE_PATH + "sample_run_function_config.json";
   private static final String PARAMETER_FILE_NAME = ABSOLUTE_PATH + "input_files/InputParam.json";
   private static final String FUNCTION_NAME = "ChatUsingGenAi";
   private static Logger log = LoggerFactory.getLogger(Run.class);
