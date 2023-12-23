@@ -36,7 +36,7 @@ import com.collager.trillo.util.Util;
 import com.fasterxml.jackson.core.type.TypeReference;
 
 public class Proxy {
-  
+
   private static Logger log = LoggerFactory.getLogger(Proxy.class);
 
   private static Map<String, Object> loginResponse = null;
@@ -44,26 +44,30 @@ public class Proxy {
   private static String serverUrl;
   private static String userId;
   private static String password;
-  private static String orgName;
-  private static String appName;
+  private static String orgName = "cloud";
+  private static String appName = "shared";
   private static String tenantName = null;
-  
+
   private static String accessToken = null;
-  
+
   private static boolean privilegedMode = false;
   private static boolean privilegedUserMode = false;
-  
+
   public static void setArgs(Map<String, Object> m) {
     setServerUrl("" + m.get("serverUrl"));
     setUserId("" + m.get("userId"));
     setPassword("" + m.get("password"));
-    setOrgName("" + m.get("orgName"));
-    setAppName("" + m.get("appName"));
+    if (m.containsKey("orgName")) {
+      setOrgName("" + m.get("orgName"));
+    }
+    if (m.containsKey("appName")) {
+      setAppName("" + m.get("appName"));
+    }
     if (m.containsKey("tenantName")) {
       tenantName = "" + m.get("tenantName");
     }
   }
-  
+
   public static Map<String, Object> getLoginResponse() {
     return loginResponse;
   }
@@ -87,15 +91,15 @@ public class Proxy {
   public static void setServerUrl(String serverUrl) {
     Proxy.serverUrl = serverUrl;
   }
-  
+
   public static void setUserId(String userId) {
     Proxy.userId = userId;
   }
-  
+
   public static void setPassword(String password) {
     Proxy.password = password;
   }
-  
+
   public static void setOrgName(String orgName) {
     Proxy.orgName = orgName;
   }
@@ -111,7 +115,7 @@ public class Proxy {
     login();
     return accessToken;
   }
-  
+
   public static boolean isLoggedIn() {
     return accessToken != null;
   }
@@ -144,7 +148,7 @@ public class Proxy {
       return false;
     }
   }
-  
+
   @SuppressWarnings("unchecked")
   public static Object remoteCall(String javaClassName, String javaMethodName, Object ...args) {
     Map<String, Object> map = new LinkedHashMap<String, Object>();
@@ -160,8 +164,8 @@ public class Proxy {
     HttpEntity httpEntity = new StringEntity(Util.asJSONPrettyString(map), ContentType.APPLICATION_JSON);
     try {
       Request request = Request.Post(serverUrl + "/ds/remoteCall")
-          .addHeader("Authorization", "Bearer " + getAccessToken()).addHeader("x-org-name", orgName).addHeader("x-app-name", appName)
-          .body(httpEntity);
+        .addHeader("Authorization", "Bearer " + getAccessToken()).addHeader("x-org-name", orgName).addHeader("x-app-name", appName)
+        .body(httpEntity);
       CloseableHttpClient cli = getHttpClient();
       Content content = Executor.newInstance(cli).execute(request).returnContent();
       try {
@@ -170,55 +174,55 @@ public class Proxy {
           Map<String, Object> m = (Map<String, Object>) response;
           if (m.containsKey("_rtag") && "_r_".equals("" + m.get("_rtag"))) {
             return Util.fromMap(m, Result.class);
-          } 
+          }
         }
         return response;
       } catch (Exception exc) {
         // not a value JSON return content as string
         return content.toString();
       }
-      
+
     } catch (Exception exc) {
-      log.error("Failed remove call: " + exc.toString());
-      return Result.getFailedResult("Failed remove call: " + exc.toString());
+      log.error("Failed remoteCall: " + exc.toString());
+      return Result.getFailedResult("Failed remoteCall: " + exc.toString());
     }
   }
 
   public static CloseableHttpClient getHttpClient() {
     try {
       TrustManager[] trustAllCerts = new TrustManager[] {
-         new X509TrustManager() {
-      public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-          return null;
-      }
-     
-      @Override
-      public void checkClientTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
-        // TODO Auto-generated method stub
-        
-      }
-      @Override
-      public void checkServerTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
-        // TODO Auto-generated method stub
-        
-      }
-      }
+        new X509TrustManager() {
+          public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+            return null;
+          }
+
+          @Override
+          public void checkClientTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
+            // TODO Auto-generated method stub
+
+          }
+          @Override
+          public void checkServerTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
+            // TODO Auto-generated method stub
+
+          }
+        }
       };
 
       SSLContext sc = SSLContext.getInstance("SSL");
       sc.init(null, trustAllCerts, new SecureRandom());
       CloseableHttpClient httpClient = HttpClients.custom().setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE).setSSLContext(sc).build();
       return httpClient;
-      
-      } catch (Exception e) {
-        return null;
-      }
+
+    } catch (Exception e) {
+      return null;
+    }
   }
 
   public static String getIdOfCurrentUser() {
     return "" + user.get("id");
   }
-  
+
   public static long getIdOfCurrentUserAsLong() {
     return Long.parseLong("" + user.get("id"));
   }
