@@ -172,9 +172,7 @@ public class StorageApi extends BaseApi {
   /* ------------- */
   
   public static String getSignedUrl(String bucketName, String filePath) {
-    Object res = HttpRequestUtil.get(storageEndpoint + "/getSignedUrl?bucketName=" + bucketName
-            + "&filePath=" + filePath);
-    return HttpResponseToString(res);
+    return remoteCallAsString("StorageApi", "getSignedUrl", bucketName, filePath);
   }
   
   public static String getSignedUrl(String bucketName, String filePath, long duration, TimeUnit unit) {

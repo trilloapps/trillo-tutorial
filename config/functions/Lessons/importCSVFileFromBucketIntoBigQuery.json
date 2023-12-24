@@ -1,0 +1,27 @@
+{
+  "functionName" : "Lessons",
+  "methodName" : "importCSVFileFromBucketIntoBigQuery",
+  "parameters" : {
+    "datasetName" : "trilloTutorial",
+  	"tableName" : "customer",
+    "sourceUri" : "gs://trillo-eng-dev-2-402218/docs/admin/customer.csv",
+    "schema" : [
+      {
+        "name": "firstName",
+        "type": "STRING"
+      },
+      {
+        "name": "lastName",
+        "type": "STRING"
+      },
+      {
+        "name": "phone",
+        "type": "STRING"
+      },
+      {
+        "name": "email",
+        "type": "STRING"
+      }
+    ]
+  }
+}
