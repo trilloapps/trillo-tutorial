@@ -2,9 +2,8 @@ import com.collager.trillo.model.DataIterator;
 import com.collager.trillo.pojo.Result;
 import com.collager.trillo.util.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 public class Lessons extends ServerlessFunction {
 
@@ -98,6 +97,30 @@ public class Lessons extends ServerlessFunction {
   public Object summarizeTextDocumentAi(Map<String, Object> parameters) {
     String text = "" + parameters.get("text");
     return GCPGenApi.summarizeText(text);
+  }
+
+  public Object workflowForDataProcessing(Map<String, Object> parameters) {
+
+    //In this workflow, we will read a file from bucket, extract the content, then summarize the text and return
+
+    //read a file from GCP bucket
+    Object res = readFileFromCloudStorageBucket(parameters);
+    if(res instanceof Result){
+      if(((Result)res).isSuccess()){
+        String text = decodeBase64("" + ((Result)res).getData());
+        Map<String, Object> params = new HashMap<>();
+        params.put("text", text);
+
+        //summarize text
+        return summarizeTextDocumentAi(params);
+      }
+    }
+    return  Result.getFailedResult("Failed");
+  }
+
+  public static String decodeBase64(String base64Text) {
+    byte[] decodedBytes = Base64.getDecoder().decode(base64Text);
+    return new String(decodedBytes, StandardCharsets.UTF_8);
   }
 
 
