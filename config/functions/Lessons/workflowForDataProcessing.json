@@ -1,0 +1,8 @@
+{
+  "functionName" : "Lessons",
+  "methodName" : "workflowForDataProcessing",
+  "parameters" : {
+  	"bucketName" : "trillo-tutorial",
+    "sourceFilePath" : "DummyFiles/GlobalWarming.txt"
+  }
+}
