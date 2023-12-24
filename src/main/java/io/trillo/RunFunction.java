@@ -113,12 +113,12 @@ public class RunFunction {
     String password = System.getenv("TRILLO_WB_USER_PASSWORD");
     
     if (userId == null) {
-      log.error("Trillo Workbench userId is not specified. Specify it using environment variable TRILLO_WB_USER_ID" + configFilePath);
+      log.error("Trillo Workbench userId is not specified. Specify it using environment variable TRILLO_WB_USER_ID");
       verified = false;
     }
     
     if (password == null) {
-      log.error("Trillo Workbench password is not specified. Specify it using environment variable TRILLO_WB_USER_PASSWORD" + configFilePath);
+      log.error("Trillo Workbench password is not specified. Specify it using environment variable TRILLO_WB_USER_PASSWORD");
       verified = false;
     }
     
