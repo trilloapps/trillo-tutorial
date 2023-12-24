@@ -32,10 +32,14 @@ public class RunFunction {
       log.error("Missing config file, " + file.getPath());
       System.exit(-1);
     }
+    
+    // read Trillo Workbench configuration from config/server.json to get URL and function details reference
     Map<String, Object> config = loadFile(file);
     if (config == null) {
       System.exit(-1);
     }
+    
+    // verify config and add userId and password from the environment.
     if (!verifyAndUpdateConfig(config, file.getPath())) {
       System.exit(-1);
     }
@@ -104,6 +108,7 @@ public class RunFunction {
     config.remove("userId");
     config.remove("password");
     
+    // read environment variables
     String userId = System.getenv("TRILLO_WB_USER_ID");
     String password = System.getenv("TRILLO_WB_USER_PASSWORD");
     
@@ -118,6 +123,7 @@ public class RunFunction {
     }
     
     if (verified) {
+      // if configuration is verified, update userId and password read from the environment
       config.put("userId", userId);
       config.put("password", password);
     }
