@@ -2,7 +2,6 @@
   "functionName" : "Lessons",
   "methodName" : "queryDatasetBigQuery",
   "parameters" : {
-  	"bucketName" : "trillo-tutorial",
-    "sourceFilePath" : "DummyFiles/GlobalWarming.txt"
+  	"query" : "SELECT * FROM `eng-dev-2-402218.trilloTutorial.customer`"
   }
 }

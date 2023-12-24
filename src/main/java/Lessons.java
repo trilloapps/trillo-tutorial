@@ -90,7 +90,15 @@ public class Lessons extends ServerlessFunction {
 
   @Api(httpMethod = "get")
   public Object queryDatasetBigQuery(Map<String, Object> parameters) {
-    return BigQueryApi.getPage("SELECT * FROM `eng-dev-2-402218.trilloTutorial.Customer`", 0, 10);
+    String query = "" + parameters.get("query");
+    return BigQueryApi.getPage(query, 0, 10);
   }
+
+  @Api(httpMethod = "post")
+  public Object summarizeTextDocumentAi(Map<String, Object> parameters) {
+    String text = "" + parameters.get("text");
+    return GCPGenApi.summarizeText(text);
+  }
+
 
 }
