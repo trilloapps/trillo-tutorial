@@ -3,5 +3,5 @@
    "userId":"Defined as environment variable TRILLO_WB_USER_ID.",
    "password":"Defined as environment variable TRILLO_WB_USER_PASSWORD",
    
-   "functionDetailsFile" : "config/functions/desired-post-n-get-body.json"
+   "functionDetailsFile" : "config/functions/desired-post-or-get-body.json"
 }
