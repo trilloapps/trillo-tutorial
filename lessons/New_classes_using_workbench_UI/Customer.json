@@ -1,0 +1,66 @@
+{
+ "primaryKeyGenerator": "serial",
+ "displayName": "Customer",
+ "custom": true,
+ "name": "Customer",
+ "attributes": [
+  {
+   "name": "id",
+   "type": "biginteger",
+   "persistent": true,
+   "primaryKey": true,
+   "systemAttr": true,
+   "_selected_": true
+  },
+  {
+   "name": "createdAt",
+   "type": "biginteger",
+   "persistent": true,
+   "systemAttr": true
+  },
+  {
+   "name": "updatedAt",
+   "type": "biginteger",
+   "persistent": true,
+   "systemAttr": true
+  },
+  {
+   "name": "deleted",
+   "type": "boolean",
+   "persistent": true,
+   "systemAttr": true
+  },
+  {
+   "name": "deletedAt",
+   "type": "biginteger",
+   "persistent": true,
+   "systemAttr": true
+  },
+  {
+   "persistent": true,
+   "type": "string",
+   "_selected_": true,
+   "name": "firstName"
+  },
+  {
+   "persistent": true,
+   "type": "string",
+   "_selected_": true,
+   "name": "lastName"
+  },
+  {
+   "persistent": true,
+   "type": "string",
+   "_selected_": true,
+   "name": "email"
+  },
+  {
+   "persistent": true,
+   "type": "string",
+   "_selected_": true,
+   "name": "phone"
+  }
+ ],
+ "tableCreateable": true,
+ "nameInDS": "Customer_tbl"
+}

@@ -1,7 +1,7 @@
 {
-   "serverUrl":"https://api.eng-dev-2-402218.trilloapps.com/",
-   "userId":"Defined as environemnt varaible TRILLO_WB_USER_ID.",
-   "password":"defined as environemnt varaible TRILLO_WB_USER_PASSWORD",
+   "serverUrl":"<your workbench url>",
+   "userId":"Defined as environment variable TRILLO_WB_USER_ID.",
+   "password":"Defined as environment variable TRILLO_WB_USER_PASSWORD",
    
    "functionDetailsFile" : "config/functions/OrderService.getItems.json"
 }
