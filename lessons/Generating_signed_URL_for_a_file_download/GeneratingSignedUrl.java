@@ -1,14 +1,15 @@
-package lessons.Generating_signed_URL_for_upload_and_download;
-
 import java.util.Map;
 import com.collager.trillo.pojo.Result;
 import com.collager.trillo.util.*;
 
-public class GeneratingSignedUrlForUploadAndDownload extends ServerlessFunction {
+public class GeneratingSignedUrl extends ServerlessFunction {
 
-
+  /*
+   Generates signed URL for generating a file. Normally this API is invoked by a client
+   to generate a signed URL to download a file.
+   */
   @Api(httpMethod = "post")
-  public Object generatingSignedUrlForDownload(Map<String, Object> parameters) {
+  public Object generate(Map<String, Object> parameters) {
     if (!parameters.containsKey("bucketName")) {
       return Result.getFailedResult("Missing bucketName");
     }
@@ -20,5 +21,4 @@ public class GeneratingSignedUrlForUploadAndDownload extends ServerlessFunction 
 
     return StorageApi.getSignedUrl(bucketName, sourceFilePath);
   }
-
 }
