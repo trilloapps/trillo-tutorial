@@ -7,12 +7,13 @@ This tutorial provides instructions on how to develop serverless functions for t
 ## Prerequisites:
 - Java IDE (Java 8 or above)
 - Cloned Trillo Workbench repository
+- The repository should be imported as a new Maven project. (Make sure you don’t import it as a project or directory).
 - Access to a Trillo Workbench running on the cloud (URL and credentials)
 - Credentials to access the Trillo Workbench via client
 
 ---
 
-## Understanding Trillo Functions:
+## Understanding Trillo Functions and how they differ from Lambda or Cloud Functions:
 - Trillo functions use Trillo Workbench APIs and don't handle cloud APIs or database connections.
 - They are deployed by Trillo Workbench, eliminating the need for CI/CD pipelines.
 
@@ -25,9 +26,17 @@ This tutorial provides instructions on how to develop serverless functions for t
 ---
 
 ## Development Using IDE:
-- Trillo functions can run inside an IDE through an executor program, RunFunction.java.
+- Trillo functions can run inside an IDE through an executor program,(src/main/java/io/trillo/RunFunction.java, provided in the repo). 
+- It reads credentials from environment variables.
+  - TRILLO_WB_USER_ID
+  - TRILLO_WB_USER_PASSWORD
+    
+  These credentials are the ones which are used to login to Trillo Workbench and should be set as environment variables under Configuration settings as follows:
+  
+
+    TRILLO_WB_USER_ID={userId};TRILLO_WB_USER_PASSWORD={password}
 - The executor connects with Trillo Workbench, authenticates, and acquires an access token for API calls.
-- Server.json contains the Trillo Workbench configuration and function details file.
+- config/Server.json contains the Trillo Workbench configuration and function details file.
 
 ---
 
