@@ -1,14 +1,25 @@
 # **Trillo Workbench - Development using IDE**
 
 This tutorial provides instructions on how to develop serverless functions for the Trillo Workbench using an Integrated Development Environment (IDE).
+Trillo Workbench (WB) is a runtime to develop applications using model driven and serverless architecture. It means you specify structural parts of an application such as database, domain metadata, etc. as metadata. You add application logic using serverless functions (referred to as Trillo function). Both are deployed on the Trillo Workbench via UI or a git repository. Trillo Workbench using your code (metadata and function) makes the application functionality available.
 
-<hr style="border:1px solid gray">
+One of the challenges of writing serverless functions is to debug them. This guide describes how to develop serverless functions for Trillo Workbench using IDE.
+
+How to read this document to learn development of an application using Trillo Workbench?
+
+- Follow the instructions in this document.
+- Perform a few or all lessons described in this document:
+  [Lessons - building application server using Trillo Workbench](https://docs.google.com/document/d/1Xs-L1gP-5fvNKkWzopm4T25yQ_v_P_heX1s8V69--Vs/edit)
+- Two documents are designed to work together.
+
+
+<hr style="border:0.1px solid gray">
 
 ## Understanding Trillo Functions and how they differ from Lambda or Cloud Functions
 - Trillo functions use Trillo Workbench APIs and don't handle cloud APIs or database connections.
 - They are deployed by Trillo Workbench, eliminating the need for CI/CD pipelines.
 
-<hr style="border:1px solid gray">
+<hr style="border:0.1px solid gray">
 
 ## Anatomy of a Trillo Function
 - Each function has structures corresponding to one endpoint, allowing for addition or removal of methods as needed.
@@ -36,7 +47,7 @@ public class OrderService extends ServerlessFunction {
 }
 
 ```
-<hr style="border:1px solid gray">
+<hr style="border:0.1px solid gray">
 
 ## Developing Using IDE
 The following sections describe concepts and steps to start developing Trillo functions using IDE.
@@ -62,6 +73,8 @@ The following sections describe concepts and steps to start developing Trillo fu
 - The executor connects with Trillo Workbench, authenticates, and acquires an access token for API calls.
 - config/Server.json contains the Trillo Workbench configuration and function details file.
 
+
+![Develop_Trillo_Function_Using_IDE.png](docs/html/images/Develop_Trillo_Function_Using_IDE.png)
 
 ## Steps to develop Trillo functions using IDE
 - Create a new Java file (path:src/main/java) using IDE and copy the code below, change the class name, method name. Change HTTP method type (get, post, put, delete) in the annotation. Make sure the function inherits from the ServerlessFunction.
@@ -122,21 +135,13 @@ public class {{placeHolderName}} extends ServerlessFunction {
 - Update the Server.json file and specify the function details file.
 - Set RunFunction as the main class and start running or debugging.
 
-<hr style="border:1px solid gray">
+<hr style="border:0.1px solid gray">
 
 ## Additional Information
 - Refer to the Trillo Workbench Developer Guide for more details on the anatomy of Trillo functions and their structure.
 - Utilize Trillo Workbench APIs for writing code and consult the references provided for more information.
 
-<hr style="border:1px solid gray">
+<hr style="border:0.1px solid gray">
 
-## High level Interactions
-For more details, please consult this document - docs/TrilloWorkbench-DevelopmentUsingIDE.pdf
-
-Based on the above document, a complete interaction diagram is shown below.
-
-![Develop_Trillo_Function_Using_IDE.png](docs/html/images/Develop_Trillo_Function_Using_IDE.png)
-
-<hr style="border:1px solid gray">
 ## References
 - https://trillo.gitbook.io/trillo-workbench
