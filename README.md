@@ -2,13 +2,13 @@
 
 This tutorial provides instructions on how to develop serverless functions for the Trillo Workbench using an Integrated Development Environment (IDE).
 
----
+<hr style="border:1px solid gray">
+
 ## Understanding Trillo Functions and how they differ from Lambda or Cloud Functions
 - Trillo functions use Trillo Workbench APIs and don't handle cloud APIs or database connections.
 - They are deployed by Trillo Workbench, eliminating the need for CI/CD pipelines.
 
----
-
+<hr style="border:1px solid gray">
 
 ## Anatomy of a Trillo Function
 - Each function has structures corresponding to one endpoint, allowing for addition or removal of methods as needed.
@@ -36,11 +36,12 @@ public class OrderService extends ServerlessFunction {
 }
 
 ```
----
+<hr style="border:1px solid gray">
+
 ## Developing Using IDE
 The following sections describe concepts and steps to start developing Trillo functions using IDE.
 
-###Prerequisites for IDE Development
+### Prerequisites for IDE Development
 
 - Java IDE should be available on your machine. It should be using Java 8 or above.
 - You should have cloned this repository.
@@ -121,13 +122,13 @@ public class {{placeHolderName}} extends ServerlessFunction {
 - Update the Server.json file and specify the function details file.
 - Set RunFunction as the main class and start running or debugging.
 
----
+<hr style="border:1px solid gray">
 
 ## Additional Information
 - Refer to the Trillo Workbench Developer Guide for more details on the anatomy of Trillo functions and their structure.
 - Utilize Trillo Workbench APIs for writing code and consult the references provided for more information.
 
----
+<hr style="border:1px solid gray">
 
 ## High level Interactions
 For more details, please consult this document - docs/TrilloWorkbench-DevelopmentUsingIDE.pdf
@@ -136,6 +137,6 @@ Based on the above document, a complete interaction diagram is shown below.
 
 ![Develop_Trillo_Function_Using_IDE.png](docs/html/images/Develop_Trillo_Function_Using_IDE.png)
 
----
+<hr style="border:1px solid gray">
 ## References
 - https://trillo.gitbook.io/trillo-workbench
