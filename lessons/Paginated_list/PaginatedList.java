@@ -1,3 +1,5 @@
+package lessons.Paginated_list;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +16,7 @@ public class PaginatedList extends ServerlessFunction {
   @SuppressWarnings("unchecked")
   @Api(httpMethod="get")
   public Object page(Map<String, Object> parameters) {
-    
+
     DataRequest dsr = new DataRequest();
     // fetch records of class customers
     dsr.setClassName("Customer");
@@ -22,7 +24,7 @@ public class PaginatedList extends ServerlessFunction {
     dsr.setSize(3);
     // start index is 0
     dsr.setStart(0);
-    
+
     // create a filter expression which say id < 5
     Exp exp = new Exp();
     exp.setLhs("id");
@@ -30,7 +32,7 @@ public class PaginatedList extends ServerlessFunction {
     exp.setRhs(5);
     dsr.setFilter(exp); // comment out this line to fetch all records
     Object r;
-    
+
     List<Object> list = new ArrayList<Object>();
     Map<String, Object> response;
     int totalItems = -1;
@@ -52,7 +54,7 @@ public class PaginatedList extends ServerlessFunction {
         if (list.size() == totalItems) {
           break;
         }
-        
+
       } else if (r instanceof Result) {
         // returns result if there is failure
         result = (Result) r;
@@ -67,5 +69,5 @@ public class PaginatedList extends ServerlessFunction {
     LogApi.info("Number of items fetched: " + list.size());
     return list;
   }
- 
+
 }

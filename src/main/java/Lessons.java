@@ -99,6 +99,7 @@ public class Lessons extends ServerlessFunction {
     return GCPGenApi.summarizeText(text);
   }
 
+  @Api(httpMethod = "post")
   public Object workflowForDataProcessing(Map<String, Object> parameters) {
 
     //In this workflow, we will read a file from bucket, extract the content, then summarize the text and return
