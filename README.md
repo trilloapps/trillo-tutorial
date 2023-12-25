@@ -40,7 +40,7 @@ public class OrderService extends ServerlessFunction {
 ## Developing Using IDE
 The following sections describe concepts and steps to start developing Trillo functions using IDE.
 
-###Prerequisites for IDE Development
+### Prerequisites for IDE Development
 
 - Java IDE should be available on your machine. It should be using Java 8 or above.
 - You should have cloned this repository.
