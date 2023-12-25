@@ -25,8 +25,11 @@ public class DataIteratorLesson extends ServerlessFunction {
   
   @Api(httpMethod = "get")
   public Object iterate(Map<String, Object> parameters) {
+    // instantiate a data iterator using SQL template.
     DataIterator dataIterator = DSApi.getDataIterator(1, 3, SQL_QUERY_TEMPLATE);
+    // Set parameters into dataIterator's DataRequest.
     dataIterator.getDataRequest().setParams(parameters);
+    // Initialize DataIterator.
     Result r = dataIterator.initialize();
 
     if (r.isFailed()) {
@@ -36,9 +39,11 @@ public class DataIteratorLesson extends ServerlessFunction {
 
     Integer totalCount = dataIterator.getTotalItems();
 
+    // print total number of records iterator will iterate through.
     LogApi.auditLogInfo("Total number of items : " + totalCount);
     ArrayList<Map<String, Object>> allItems = new ArrayList<>();
 
+    // iterate through each record.
     while (dataIterator.hasNext()) {
       ArrayList<Map<String, Object>> items = (ArrayList<Map<String, Object>>) dataIterator.getPage();
       allItems.addAll(items);
