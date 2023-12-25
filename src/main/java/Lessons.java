@@ -29,19 +29,6 @@ public class Lessons extends ServerlessFunction {
     return allItems;
   }
 
-  @Api(httpMethod = "post")
-  public Object readFileFromCloudStorageBucket(Map<String, Object> parameters) {
-    if (!parameters.containsKey("bucketName")) {
-      return Result.getFailedResult("Missing bucketName");
-    }
-    if (!parameters.containsKey("sourceFilePath")) {
-      return Result.getFailedResult("Missing sourceFilePath");
-    }
-    String bucketName = "" + parameters.get("bucketName");
-    String sourceFilePath = "" + parameters.get("sourceFilePath");
-
-    return StorageApi.readFromBucket(bucketName, sourceFilePath);
-  }
 
   @Api(httpMethod = "post")
   public Object generatingSignedUrlForDownload(Map<String, Object> parameters) {
@@ -102,20 +89,7 @@ public class Lessons extends ServerlessFunction {
   @Api(httpMethod = "post")
   public Object workflowForDataProcessing(Map<String, Object> parameters) {
 
-    //In this workflow, we will read a file from bucket, extract the content, then summarize the text and return
-
-    //read a file from GCP bucket
-    Object res = readFileFromCloudStorageBucket(parameters);
-    if(res instanceof Result){
-      if(((Result)res).isSuccess()){
-        String text = decodeBase64("" + ((Result)res).getData());
-        Map<String, Object> params = new HashMap<>();
-        params.put("text", text);
-
-        //summarize text
-        return summarizeTextDocumentAi(params);
-      }
-    }
+    
     return  Result.getFailedResult("Failed");
   }
 
