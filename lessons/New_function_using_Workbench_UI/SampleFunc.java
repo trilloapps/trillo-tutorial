@@ -1,3 +1,5 @@
+package lessons.New_function_using_Workbench_UI;
+
 import java.util.Map;
 import com.collager.trillo.util.Api;
 import com.collager.trillo.util.ServerlessFunction;
