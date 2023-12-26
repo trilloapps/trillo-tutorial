@@ -1,6 +1,6 @@
 {
-  "functionName" : "Lessons",
-  "methodName" : "importCSVFileFromBucketIntoBigQuery",
+  "functionName" : "ImportCSVFileFromBucketIntoBigQuery",
+  "methodName" : "importCSV",
   "parameters" : {
     "datasetName" : "trilloTutorial",
   	"tableName" : "customer",

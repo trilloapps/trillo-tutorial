@@ -1,0 +1,8 @@
+{
+  "functionName" : "DocumentAIProcessor",
+  "methodName" : "process",
+  "parameters" : {
+  	"bucketName" : "trillo-tutorial",
+    "sourceFilePath" : "DummyFiles/Invoice-1234567.pdf"
+  }
+}
