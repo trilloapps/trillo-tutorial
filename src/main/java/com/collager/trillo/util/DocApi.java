@@ -41,6 +41,10 @@ public class DocApi extends BaseApi {
   public static Object getSummaryResults(long folderId, int start, int pageSize) {
     return remoteCall("DocApi", "getSummaryResults", folderId, start, pageSize);
   }
+  
+  public static String getUrl(String documentType, boolean batchMode) {
+    return remoteCallAsString("DocApi", "getUrl", documentType, batchMode);
+  }
 }
 
 
