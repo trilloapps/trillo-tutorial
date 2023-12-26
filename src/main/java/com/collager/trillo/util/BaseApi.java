@@ -364,6 +364,10 @@ public class BaseApi {
     String[] sl = className.split("\\.");
     return sl[sl.length - 1];
   }
+  
+  public static String getServerBaseUrl() {
+    return BaseApi.remoteCallAsString("BaseApi", "getServerBaseUrl");
+  }
 }
 
 
