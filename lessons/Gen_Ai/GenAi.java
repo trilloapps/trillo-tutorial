@@ -6,12 +6,7 @@ import java.util.Map;
 
 public class GenAi extends ServerlessFunction {
 
-  @Api(httpMethod = "post")
-  public Object summarizeText(Map<String, Object> parameters) {
-    String text = "" + parameters.get("text");
-    return GCPGenApi.summarizeText(text);
-  }
-
+  @SuppressWarnings("unchecked")
   @Api(httpMethod = "post")
   public Object chat(Map<String, Object> parameters) {
 
@@ -39,5 +34,12 @@ public class GenAi extends ServerlessFunction {
     return Result.getSuccessResultWithData(responseMessages);
 
   }
+  
+  @Api(httpMethod = "post")
+  public Object summarizeText(Map<String, Object> parameters) {
+    String text = "" + parameters.get("text");
+    return GCPGenApi.summarizeText(text);
+  }
+
 
 }
