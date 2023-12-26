@@ -1,5 +1,3 @@
-package lessons.Import_a_CSV_file_from_Bucket_into_BigQuery;
-
 import java.util.List;
 import java.util.Map;
 import com.collager.trillo.pojo.Result;
@@ -8,8 +6,9 @@ import com.collager.trillo.util.*;
 public class ImportCSVFileFromBucketIntoBigQuery extends ServerlessFunction {
 
 
+  @SuppressWarnings("unchecked")
   @Api(httpMethod = "post")
-  public Object importCSVFileFromBucketIntoBigQuery(Map<String, Object> parameters) {
+  public Object importCSV(Map<String, Object> parameters) {
     if(!parameters.containsKey("datasetName")){
       return Result.getFailedResult("Missing datasetName");
     }
