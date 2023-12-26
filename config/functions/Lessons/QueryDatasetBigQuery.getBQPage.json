@@ -1,6 +1,6 @@
 {
-  "functionName" : "Lessons",
-  "methodName" : "queryDatasetBigQuery",
+  "functionName" : "QueryDatasetBigQuery",
+  "methodName" : "getBQPage",
   "parameters" : {
   	"query" : "SELECT * FROM `eng-dev-2-402218.trilloTutorial.customer`"
   }
