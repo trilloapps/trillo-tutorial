@@ -1,7 +1,0 @@
-{
-  "functionName" : "OrderService",
-  "methodName" : "getItems",
-  "parameters" : {
-  	"orderId" : 123
-  }
-}
