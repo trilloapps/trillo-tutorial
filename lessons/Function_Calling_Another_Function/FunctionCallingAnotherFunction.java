@@ -11,7 +11,7 @@ public class FunctionCallingAnotherFunction extends ServerlessFunction {
    First calls FunctionToCall.queryRecordsFromDSById() method to query records for an id synchronously using
    FuncApi.executeFunctionWithMethod()
 
-   Then it calls FunctionToCall.saveManyRecordsInDsWithSleep() method to save bulk records asynchronously using
+   Then it calls FunctionToCall.saveManyRecordsInDs() method to save bulk records asynchronously using
    FuncApi.executeFunctionWithMethod()
    */
 
