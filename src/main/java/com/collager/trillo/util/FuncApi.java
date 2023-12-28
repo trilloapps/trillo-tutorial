@@ -21,16 +21,13 @@ public class FuncApi extends BaseApi {
   }
   
   public static Result executeFunctionWithMethod(String functionName, String methodName, Map<String, Object> params) {
-    Map<String, Object> body = new LinkedHashMap<String, Object>();
-    body.put("methodName", methodName);
-    body.put("params", params);
-    Object obj= HttpRequestUtil.post(funcEndpoint + "/" + functionName + "/executeFunctionWithMethod", new JSONObject(body).toString());
-    return convertToResult(obj);
+    return remoteCallAsResult("CoreFuncApi", "executeFunctionWithMethod",
+      functionName, methodName, params);
   }
 
   public static Result executeFunctionWithMethod(String appName, String functionName, String methodName, Map<String, Object> params) {
     return remoteCallAsResult("CoreFuncApi", "executeFunctionWithMethod",
-      appName, functionName, params);
+      appName, functionName, methodName, params);
   }
 
   public static Result executeSSH(String hostName, String command) {
