@@ -71,6 +71,7 @@ public class LogAction {
   public final static String DbOp = "DbOp";
   public final static String BqOp = "BqOp";
   public final static String RestOp = "RestOp";
+  public static final String ParallelOp = "ParallelOp";
 
   
   public final static String PubSubSubscriber = "PubSubSubscriber";

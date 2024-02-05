@@ -25,7 +25,7 @@ How to read this document to learn development of an application using Trillo Wo
 - Each function has structures corresponding to one endpoint, allowing for addition or removal of methods as needed.
 - Trillo Workbench publishes each method as an API using a specific convention.
 
-**ds/function/{functionName}/{methodName}**
+**ds/function/shared/{functionName}/{methodName}**
 
 ```java
 import java.util.Map;

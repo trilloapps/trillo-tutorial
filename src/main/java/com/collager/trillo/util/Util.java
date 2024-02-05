@@ -1,5 +1,33 @@
 package com.collager.trillo.util;
 
+import static java.lang.Math.abs;
+import static java.lang.Math.min;
+import static java.lang.Math.pow;
+import static java.lang.Math.random;
+import static java.lang.Math.round;
+import static org.apache.commons.lang3.StringUtils.leftPad;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Writer;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.IdentityHashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import org.apache.commons.lang3.StringUtils;
+import org.json.JSONObject;
+import org.json.XML;
 import com.collager.trillo.pojo.Result;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonFactory;
@@ -13,24 +41,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import org.apache.commons.lang3.StringUtils;
-import org.json.JSONObject;
-import org.json.XML;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Writer;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-import static java.lang.Math.*;
-import static org.apache.commons.lang3.StringUtils.leftPad;
 
 public class Util {
   
@@ -575,12 +585,9 @@ public class Util {
     }
     return outputList;
   }
-
-  public static String getCloudProvider() {
-    String cloudProvider = System.getenv("CLOUD_PROVIDER");
-    if (cloudProvider != null && cloudProvider.equalsIgnoreCase("azure")) {
-      return cloudProvider.toLowerCase();
-    }
-    return "gcp";
+  
+  public static Map<String, Object> deepCopy(Map<String, Object> map) {
+    String str = asJSONString(map);
+    return fromJSONStringAsMap(str);
   }
 }

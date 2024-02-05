@@ -1,7 +1,0 @@
-{
-  "functionName" : "PaginationBySqlQuery",
-  "methodName" : "page",
-  "parameters" : {
-  	"id" : 1
-  }
-}
