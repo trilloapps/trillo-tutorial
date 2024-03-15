@@ -507,7 +507,11 @@ public class StorageApi extends BaseApi {
   public static Result makePublic(String bucketName, String filePath) {
     return BaseApi.remoteCallAsResult("StorageApi", "makePublic", bucketName, filePath);
   }
-  
+
+  public static Result deleteFileFromBucket(String bucketName, String sourceFilePath) {
+    return BaseApi.remoteCallAsResult("StorageApi", "deleteFileFromBucket", bucketName, sourceFilePath);
+  }
+
   public static Result makePublic(String bucketName, String serviceAccountPropName, 
       String filePath) {
     return BaseApi.remoteCallAsResult("StorageApi", "makePublic", bucketName, serviceAccountPropName, filePath);
