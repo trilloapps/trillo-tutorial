@@ -59,4 +59,8 @@ public class GCPGenApi extends BaseApi {
   public static Result extractEntitiesFromText(String prompt, String text) {
     return remoteCallAsResult("GCPGenApi", "extractEntitiesFromText", prompt, text);
   }
+
+  public static Object vertexAiGetAnswer(String question, String datastoreId) {
+    return remoteCall("GCPGenApi", "vertexAiGetAnswer", question, datastoreId);
+  }
 }
