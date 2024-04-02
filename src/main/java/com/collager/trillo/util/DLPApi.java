@@ -16,6 +16,14 @@ public class DLPApi extends BaseApi {
     return remoteCallAsResult("DLPApi", "redactImage", base64String, imageType, informationType);
   }
 
+  public static Result redactImageAllText(String base64String, ImageType imageType) {
+    return remoteCallAsResult("DLPApi", "redactImageAllText", base64String, imageType);
+  }
+
+  public static Result redactImageAllText(byte[] byteImage, ImageType imageType) {
+    return remoteCallAsResult("DLPApi", "redactImageAllText", byteImage, imageType);
+  }
+
   public static Result redactPII(String text) {
     return remoteCallAsResult("DLPApi", "redactPII", text);
   }
