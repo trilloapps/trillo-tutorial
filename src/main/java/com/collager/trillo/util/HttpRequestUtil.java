@@ -1,11 +1,7 @@
 package com.collager.trillo.util;
 
-import java.security.SecureRandom;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
+import com.collager.trillo.pojo.Result;
+import io.trillo.util.Proxy;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Executor;
@@ -17,8 +13,13 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.collager.trillo.pojo.Result;
-import io.trillo.util.Proxy;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 
 public class HttpRequestUtil {
   
@@ -41,8 +42,8 @@ public class HttpRequestUtil {
         return content.toString();
       }      
     } catch (Exception exc) {
-      log.error("Failed remove call: " + exc.toString());
-      return Result.getFailedResult("Failed remove call: " + exc.toString());
+      log.error("Failed  http get: " + exc.toString());
+      return Result.getFailedResult("Failed http get: " + exc.toString());
     }
   }
   
@@ -63,8 +64,28 @@ public class HttpRequestUtil {
         return content.toString();
       }      
     } catch (Exception exc) {
-      log.error("Failed remove call: " + exc.toString());
-      return Result.getFailedResult("Failed remove call: " + exc.toString());
+      log.error("Failed http post: " + exc.toString());
+      return Result.getFailedResult("Failed http post: " + exc.toString());
+    }
+  }
+
+  public static Object delete(String path) {
+    try {
+      Request request = Request.Delete(Proxy.getServerUrl() + path)
+        .addHeader("Authorization", "Bearer " + Proxy.getAccessToken()).
+        addHeader("x-org-name", Proxy.getOrgName()).addHeader("x-app-name", Proxy.getAppName());
+      CloseableHttpClient cli = getHttpClient();
+      Content content = Executor.newInstance(cli).execute(request).returnContent();
+      try {
+        Object response = Util.fromJSONString(content.toString(), Object.class);
+        return response;
+      } catch (Exception exc) {
+        // not a value JSON return content as string
+        return content.toString();
+      }
+    } catch (Exception exc) {
+      log.error("Failed http delete: " + exc.toString());
+      return Result.getFailedResult("Failed http delete: " + exc.toString());
     }
   }
 
