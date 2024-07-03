@@ -11,13 +11,15 @@
 
 package com.collager.trillo.util;
 
-import java.util.Map;
-
 import io.trillo.util.Proxy;
+
+import java.util.Map;
 
 
 public class UMApi extends BaseApi {
-  
+
+  private static String umEndpoint = "/_service/um";
+
   public static Map<String, Object> getCurrentUser() {
     return remoteCallAsMap("UMApi", "getCurrentUser");
   }
@@ -57,6 +59,9 @@ public class UMApi extends BaseApi {
   public static boolean isPrivilegedUserMode() {
     return Proxy.isPrivilegedUserMode();
   }
-}
 
+  public static Object deleteObject(long id) {
+    return HttpRequestUtil.delete(umEndpoint + "/" + "deleteUser" + "?id=" + id);
+  }
+}
 
