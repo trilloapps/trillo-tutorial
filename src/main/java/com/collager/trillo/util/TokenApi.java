@@ -32,4 +32,15 @@ public class TokenApi extends BaseApi {
     return result;
   }
 
+  public static String getExternalToken(String key) {
+    String result = remoteCallAsString("TokenApi", "getExternalToken", key);
+    return result;
+  }
+
+  public static Result addOAuthToken(String key, Map<String, Object> tokenMap) {
+    // todo - server side implementation
+    Result result = remoteCallAsResult("TokenApi", "addOAuthToken", key, tokenMap);
+    return result;
+  }
+
 }

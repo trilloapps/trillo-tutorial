@@ -205,6 +205,34 @@ public class Util {
     return prop;
   }
 
+  public static float asFloat(Object v, float defaultValue) {
+    try {
+      return Float.parseFloat("" + v);
+    } catch (Exception exc) {
+      return defaultValue;
+    }
+  }
+
+  public static double asDouble(Object v, double defaultValue) {
+    try {
+      return Double.parseDouble("" + v);
+    } catch (Exception exc) {
+      return defaultValue;
+    }
+  }
+
+  public static String toValidIdentifier(String str) {
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < str.length(); i++) {
+      if ((i == 0 && Character.isJavaIdentifierStart(str.charAt(i))) || (i > 0 && Character.isJavaIdentifierPart(str.charAt(i))))
+        sb.append(str.charAt(i));
+      else
+        sb.append("_");
+    }
+    return sb.toString();
+  }
+
+
   private static class PrettyPrinter extends DefaultPrettyPrinter {
     private static final long serialVersionUID = 1L;
     public static final PrettyPrinter instance = new PrettyPrinter();
@@ -589,5 +617,53 @@ public class Util {
   public static Map<String, Object> deepCopy(Map<String, Object> map) {
     String str = asJSONString(map);
     return fromJSONStringAsMap(str);
+  }
+
+  public static String getCloudProvider() {
+    String cloudProvider = System.getenv("CLOUD_PROVIDER");
+    if (cloudProvider != null && cloudProvider.equalsIgnoreCase("azure")) {
+      return cloudProvider.toLowerCase();
+    }
+    return "gcp";
+  }
+  
+  public static long asLong(Object v) {
+    return Long.parseLong("" + v);
+  }
+
+  public static int asInt(Object v) {
+    return Integer.parseInt("" + v);
+  }
+
+  public static short asShort(Object v) {
+    return Short.parseShort("" + v);
+  }
+  
+  public static long asLong(Object v, long defaultValue) {
+    try {
+      return Long.parseLong("" + v);
+    } catch (Exception exc) {
+      return defaultValue;
+    }
+  }
+
+  public static int asInt(Object v, int defaultValue) {
+    try {
+      return Integer.parseInt("" + v);
+    } catch (Exception exc) {
+      return defaultValue;
+    }
+  }
+
+  public static short asShort(Object v, short defaultValue) {
+    try {
+      return Short.parseShort("" + v);
+    } catch (Exception exc) {
+      return defaultValue;
+    }
+  }
+  
+  public static String getBucketName() {
+    return StorageApi.getBucketName();
   }
 }

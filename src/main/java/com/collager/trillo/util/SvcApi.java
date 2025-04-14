@@ -55,6 +55,46 @@ public class SvcApi extends BaseApi {
                                       Map<String, String> pathVariables) {
     return remoteCallAsResult("SvcApi", "getFile", appName, serviceName, partialPath, queryStr, pathVariables);
   }
+
+  public static Result patch(String serviceName, String partialPath, String queryStr, Map<String, Object> body,
+      Map<String, String> pathVariables) {
+    return remoteCallAsResult("SvcApi", "patch", serviceName, partialPath, queryStr, body, pathVariables);
+  }
+
+  public static Result patch(String appName, String serviceName, String partialPath, String queryStr,
+      Map<String, Object> body, Map<String, String> pathVariables) {
+    return remoteCallAsResult("SvcApi", "patch", appName, serviceName, partialPath, queryStr, body, pathVariables);
+  }
+
+  public static Result head(String serviceName, String partialPath, String queryStr,
+      Map<String, String> pathVariables) {
+    return remoteCallAsResult("SvcApi", "head", serviceName, partialPath, queryStr, pathVariables);
+  }
+
+  public static Result head(String appName, String serviceName, String partialPath, String queryStr,
+      Map<String, String> pathVariables) {
+    return remoteCallAsResult("SvcApi", "head", appName, serviceName, partialPath, queryStr, pathVariables);
+  }
+
+  public static Result options(String serviceName, String partialPath, String queryStr,
+      Map<String, String> pathVariables) {
+    return remoteCallAsResult("SvcApi", "options", serviceName, partialPath, queryStr, pathVariables);
+  }
+
+  public static Result options(String appName, String serviceName, String partialPath, String queryStr,
+      Map<String, String> pathVariables) {
+    return remoteCallAsResult("SvcApi", "options", appName, serviceName, partialPath, queryStr, pathVariables);
+  }
+
+  public static Result trace(String serviceName, String partialPath, String queryStr,
+      Map<String, String> pathVariables) {
+    return remoteCallAsResult("SvcApi", "trace", serviceName, partialPath, queryStr, pathVariables);
+  }
+
+  public static Result trace(String appName, String serviceName, String partialPath, String queryStr,
+      Map<String, String> pathVariables) {
+    return remoteCallAsResult("SvcApi", "trace", appName, serviceName, partialPath, queryStr, pathVariables);
+  }
 }
 
 

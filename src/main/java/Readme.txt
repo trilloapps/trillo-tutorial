@@ -1,9 +1,4 @@
-This is directory where you will either add java class for each lesson 
-(or copy from the 'lessons' directory to execute.
-
-Important Note:
---------------
-Trillo functions are written under default package. 
+Trillo functions are written under default package.
 This is due to an initial design decision to keep functions like scripts. 
 But we realize that this is a limitation that prevents us from 
 organizing code in logical folders. 

@@ -55,14 +55,11 @@ public class StorageApi extends BaseApi {
   }
   
   public static String getSignedUrl(String filePath) {
-    Object res = HttpRequestUtil.get(storageEndpoint + "/getSignedUrl?filePath=" + filePath);
-    return HttpResponseToString(res);
+    return remoteCallAsString("StorageApi", "getSignedUrl", filePath);
   }
   
   public static String getSignedUrl(String filePath, long duration, TimeUnit unit) {
-    Object res = HttpRequestUtil.get(storageEndpoint + "/getSignedUrl?filePath=" + filePath
-            + "&duration=" + duration + "&unit=" + unit);
-    return HttpResponseToString(res);
+    return remoteCallAsString("StorageApi", "getSignedUrl", filePath, duration, unit);
   }
   
   public static Result copyFileToBucket(String sourceFilePath, String targetFilePath) {
@@ -176,9 +173,9 @@ public class StorageApi extends BaseApi {
   }
   
   public static String getSignedUrl(String bucketName, String filePath, long duration, TimeUnit unit) {
-    Object res = HttpRequestUtil.get(storageEndpoint + "/getSignedUrl?bucketName=" + bucketName + "&filePath=" + filePath
-            + "&duration=" + duration + "&unit=" + unit);
-    return HttpResponseToString(res);
+    return remoteCallAsString("StorageApi", "getSignedUrl", bucketName, filePath,
+         duration, unit);
+
   }
   
   public static Result copyFileToBucket(String bucketName, String sourceFilePath, String targetFilePath) {
@@ -304,6 +301,10 @@ public class StorageApi extends BaseApi {
     body.put("pageSize", pageSize);
     Object res = HttpRequestUtil.post(storageEndpoint + "/listFiles", new JSONObject(body).toString());
     return (List<Map<String, Object>>) res;
+  }
+
+  public static Result deleteFileFromBucket(String bucketName, String sourceFilePath) {
+    return BaseApi.remoteCallAsResult("StorageApi", "deleteFileFromBucket", bucketName, sourceFilePath);
   }
   
   public static String getBucketName() {
@@ -507,11 +508,7 @@ public class StorageApi extends BaseApi {
   public static Result makePublic(String bucketName, String filePath) {
     return BaseApi.remoteCallAsResult("StorageApi", "makePublic", bucketName, filePath);
   }
-
-  public static Result deleteFileFromBucket(String bucketName, String sourceFilePath) {
-    return BaseApi.remoteCallAsResult("StorageApi", "deleteFileFromBucket", bucketName, sourceFilePath);
-  }
-
+  
   public static Result makePublic(String bucketName, String serviceAccountPropName, 
       String filePath) {
     return BaseApi.remoteCallAsResult("StorageApi", "makePublic", bucketName, serviceAccountPropName, filePath);
@@ -556,5 +553,37 @@ public class StorageApi extends BaseApi {
     return Result.getSuccessResult();
   }
    */
+
+  public static boolean exists(String filePath) {
+    // todo - server side implementation
+   return remoteCallAsBoolean("StorageApi", "exists", filePath);
+  }
+
+  public static List<Object> getFileList(long folderId, String orderBy)
+  {
+    // todo - server side implementation
+    return remoteCallAsList("StorageApi", "getFileList", folderId, orderBy);
+  }
+
+  public static Object getContent(Map<String, Object> doc) {
+    // todo - server side implementation
+    return remoteCall("StorageApi", "getContent", doc);
+  }
+
+  public static String getBucketPath(Map<String, Object> fileObject) {
+    // todo - server side implementation
+    return remoteCallAsString("StorageApi", "getBucketPath", fileObject);
+  }
+
+  public static String getBucketPath(String fileId) {
+    // todo - server side implementation
+    return remoteCallAsString("StorageApi", "getBucketPath", fileId);
+  }
+
+  public static Result saveAs(long fileId, String tempFilePath) {
+    // todo - server side implementation
+    return remoteCallAsResult("StorageApi", "saveAs", fileId, tempFilePath);
+  }
+
 }
 

@@ -73,4 +73,59 @@ public class SearchApi extends BaseApi {
     return res.lineIndex + (tc.searchedStartLineInclusive ? 0 : 1);
   }
 
+  public static int getLineIndex(TemplateTable tc, List<Line> lines) {
+    SearchRequest req = tc.getSearchRequest();
+    if (req == null) {
+      return -1;
+    }
+
+    SearchResult res = SearchApi.search(req, lines);
+
+    if (res == null) {
+      return -1;
+    }
+
+    return res.lineIndex;
+  }
+
+  public static List<SearchResult> search(List<Line> lines, List<String> searchPhrases) {
+    SearchRequestWithLines srwl = new SearchRequestWithLines();
+    srwl.lines = lines;
+    SearchRequest sr;
+    for (String searchPhrase: searchPhrases) {
+      sr = new SearchRequest();
+      sr.searchPhrases.add(searchPhrase);
+      sr.start = 1;
+      sr.end = lines.size();
+      sr.occurrence = 1;
+      srwl.requests.add(sr);
+    }
+
+    List<SearchResult> rl = search(srwl);
+    return rl;
+  }
+
+  public static List<SearchResult> search(SearchRequestWithLines srwl, int occurrence) {
+    for (SearchRequest sr: srwl.requests) {
+      sr.occurrence = occurrence;
+    }
+
+    List<SearchResult> rl = search(srwl);
+    return rl;
+  }
+
+  public static SearchResult search(SearchRequest req, List<Line> lines, int occurrence) {
+    req.occurrence = occurrence;
+    SearchResult res = search(req, lines);
+    return res;
+  }
+
+  public static SearchResult search(List<Line> lines, String searchPhrase, int occurrence) {
+    SearchRequest sr = new SearchRequest();
+    sr.searchPhrases.add(searchPhrase);
+    sr.start = 1;
+    sr.end = lines.size();
+    sr.occurrence = occurrence;
+    return search(sr, lines);
+  }
 }

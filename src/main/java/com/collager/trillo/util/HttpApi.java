@@ -1,10 +1,19 @@
 package com.collager.trillo.util;
 
+import com.collager.trillo.pojo.Result;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.fluent.Content;
+import org.apache.http.client.fluent.Executor;
+import org.apache.http.client.fluent.Request;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 
-import com.collager.trillo.pojo.Result;
+import static com.collager.trillo.util.HttpRequestUtil.getHttpClient;
 
 
 public class HttpApi extends BaseApi {
@@ -30,7 +39,35 @@ public class HttpApi extends BaseApi {
   }
 
   public static Result post(String requestUrl, Object body, Map<String, String> headers) {
-    return remoteCallAsResult("HttpApi", "post", requestUrl, body, headers);
+
+    HttpEntity httpEntity = new StringEntity(Util.asJSONPrettyString(body), ContentType.APPLICATION_JSON);
+    try {
+      Request request = Request.Post(requestUrl).body(httpEntity);
+      for (Map.Entry<String, String> header : headers.entrySet()) {
+        request.addHeader(header.getKey(), header.getValue());
+      }
+      CloseableHttpClient cli = getHttpClient();
+      Content content = Executor.newInstance(cli).execute(request).returnContent();
+      try {
+        Object response = Util.fromJSONString(content.toString(), Object.class);
+        if (response instanceof Map<?, ?>) {
+          Map<String, Object> m = (Map<String, Object>) response;
+          if (m.containsKey("_rtag") && "_r_".equals("" + m.get("_rtag"))) {
+            return Util.fromMap(m, Result.class);
+          }
+        }
+        if (response instanceof Result) {
+          return (Result) response;
+        }
+        throw new RuntimeException("Unexpected type");
+      } catch (Exception exc) {
+        // not a value JSON return content as string
+        return Result.getFailedResult(content.toString());
+      }
+
+    } catch (Exception exc) {
+      return Result.getFailedResult("Failed HTTP call: " + exc.toString());
+    }
   }
 
   public static Result postFormData(String requestUrl, Map<String, String> body, Map<String, String> headers) {
@@ -231,6 +268,39 @@ public class HttpApi extends BaseApi {
     }
     return result;
   }
+
+  public static Result post(String requestUrl, Object body, Map<String, String> headers, Integer retryCount, Integer waitTime) {
+    return remoteCallAsResult("HttpApi", "post", requestUrl, body, headers, retryCount, waitTime);
+  }
+
+  public static Result put(String requestUrl, Object body, Map<String, String> headers, Integer retryCount, Integer waitTime) {
+    return remoteCallAsResult("HttpApi", "put", requestUrl, body, headers, retryCount, waitTime);
+  }
+
+  public static Result patch(String requestUrl, Object body, Map<String, String> headers, Integer retryCount, Integer waitTime) {
+    return remoteCallAsResult("HttpApi", "patch", requestUrl, body, headers, retryCount, waitTime);
+  }
+
+  public static Result delete(String requestUrl, Object body, Map<String, String> headers, Integer retryCount, Integer waitTime) {
+    return remoteCallAsResult("HttpApi", "delete", requestUrl, body, headers, retryCount, waitTime);
+  }
+
+  public static Result postAsString(String requestUrl, String contentType, Object body, Map<String, String> headers, Integer retryCount, Integer waitTime) {
+    return remoteCallAsResult("HttpApi", "postAsString", requestUrl, contentType, body, headers, retryCount, waitTime);
+  }
+
+  public static Result putAsString(String requestUrl, String contentType, Object body, Map<String, String> headers, Integer retryCount, Integer waitTime) {
+    return remoteCallAsResult("HttpApi", "putAsString", requestUrl, contentType, body, headers, retryCount, waitTime);
+  }
+
+  public static Result patchAsString(String requestUrl, String contentType, Object body, Map<String, String> headers, Integer retryCount, Integer waitTime) {
+    return remoteCallAsResult("HttpApi", "patchAsString", requestUrl, contentType, body, headers, retryCount, waitTime);
+  }
+
+  public static Result deleteAsString(String requestUrl, String contentType, Object body, Map<String, String> headers, Integer retryCount, Integer waitTime) {
+    return remoteCallAsResult("HttpApi", "deleteAsString", requestUrl, contentType, body, headers, retryCount, waitTime);
+  }
+
 }
 
 

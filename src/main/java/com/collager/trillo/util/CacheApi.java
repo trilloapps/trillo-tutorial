@@ -56,6 +56,12 @@ public class CacheApi extends BaseApi {
     }
     return -1;
   }
+
+  public static void releaseLock(String docAiWorkflowLockGroup, String lockName) {
+  }
+
+  public static void acquireLock(String docAiWorkflowLockGroup, String lockName) {
+  }
 }
 
 

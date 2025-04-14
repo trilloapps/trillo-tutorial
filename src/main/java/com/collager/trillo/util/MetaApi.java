@@ -297,6 +297,10 @@ public class MetaApi extends BaseApi {
   public static Result createFunctionSysTask(String orgName, String name) {
     return remoteCallAsResult("MetaApi", "createFunctionSysTask", orgName, name);
   }
+  
+  public static Object deleteclass(String className) {
+    return remoteCallAsResult("MetaApi", "deleteclass", className);
+  }
 }
 
 

@@ -368,6 +368,11 @@ public class BaseApi {
   public static String getServerBaseUrl() {
     return BaseApi.remoteCallAsString("BaseApi", "getServerBaseUrl");
   }
+
+  public static boolean isFailedResult(Object obj) {
+    return (obj instanceof Result) && ((Result) obj).isFailed();
+  }
+
 }
 
 

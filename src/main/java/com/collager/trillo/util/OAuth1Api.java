@@ -52,4 +52,40 @@ public class OAuth1Api extends BaseApi {
     return remoteCallAsResult("OAuth1Api", "postSOAPAsXML", clientKey, clientSecret, token, 
         tokenSecret, realm, url, body, headers);
   }
+
+  public static Result put(String clientKey, String clientSecret, String token,
+      String tokenSecret, String realm, String url, Object body) {
+    return remoteCallAsResult("OAuth1Api", "put", clientKey, clientSecret, token,
+        tokenSecret, realm, url, body);
+  }
+
+  public static Result put(String clientKey, String clientSecret, String token,
+      String tokenSecret, String realm, String url, Object body, Map<String, String> headers) {
+    return remoteCallAsResult("OAuth1Api", "put", clientKey, clientSecret, token,
+        tokenSecret, realm, url, body, headers);
+  }
+
+  public static Result delete(String clientKey, String clientSecret, String token,
+      String tokenSecret, String realm, String url) {
+    return remoteCallAsResult("OAuth1Api", "delete", clientKey, clientSecret, token,
+        tokenSecret, realm, url);
+  }
+
+  public static Result delete(String clientKey, String clientSecret, String token,
+      String tokenSecret, String realm, String url, Map<String, String> headers) {
+    return remoteCallAsResult("OAuth1Api", "delete", clientKey, clientSecret, token,
+        tokenSecret, realm, url, headers);
+  }
+
+  public static Result patch(String clientKey, String clientSecret, String token,
+      String tokenSecret, String realm, String url, Object body) {
+    return remoteCallAsResult("OAuth1Api", "patch", clientKey, clientSecret, token,
+        tokenSecret, realm, url, body);
+  }
+
+  public static Result patch(String clientKey, String clientSecret, String token,
+      String tokenSecret, String realm, String url, Object body, Map<String, String> headers) {
+    return remoteCallAsResult("OAuth1Api", "patch", clientKey, clientSecret, token,
+        tokenSecret, realm, url, body, headers);
+  }
 }

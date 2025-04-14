@@ -28,15 +28,15 @@ public class CSVApi extends BaseApi {
   }
 
   public static List<Map<String, Object>> csvGetAllRows(String filePath, String separator,
-      String[] columnNames) {
+      String columnNames) {
     return (List<Map<String, Object>>) HttpRequestUtil.get(csvEndpoint + "/csvGetAllRows?filePath=" + filePath + "&separator="
-            + separator + "&columnNames=" + columnNames);
+        + separator + "&columnNames=" + columnNames);
   }
 
   public static List<Map<String, Object>> csvGetAllRows(String filePath, String separator,
-      String[] columnNames, int columnNameLine) {
+      String columnNames, int columnNameLine) {
     return (List<Map<String, Object>>) HttpRequestUtil.get(csvEndpoint + "/csvGetAllRows?filePath=" + filePath + "&separator="
-            + separator + "&columnNames=" + columnNames + "&columnNameLine=" +columnNameLine);
+        + separator + "&columnNames=" + columnNames + "&columnNameLine=" +columnNameLine);
 
   }
   
@@ -46,10 +46,10 @@ public class CSVApi extends BaseApi {
             + separatorChar + "&columnNames=" + columnNames + "&columnNameLine=" + columnNameLine + "&query="
             + query + "&startIndex=" + startIndex + "&pageSize=" + pageSize);
   }
-  
-  public static Result csvWriteFile(String fileName, char separatorChar, 
+
+  public static Result csvWriteFile(String fileName, char separatorChar,
       List<String> columnNames, int columnNameLine, List<Map<String, Object>> rows) {
-    Map body = new HashMap();
+    Map<String, Object> body = new HashMap<>();
     body.put("fileName", fileName);
     body.put("separatorChar", separatorChar);
     body.put("columnNames", columnNames);

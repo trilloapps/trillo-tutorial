@@ -21,4 +21,12 @@ public class OpenAIApi extends BaseApi {
     return remoteCall("OpenAIApi", "generateImage", params);
   }
 
+  public static Object multimodalChat(Map<String, Object> params) {
+    return remoteCall("OpenAIApi", "multimodalChat", params);
+  }
+  
+  public static Object convertQuestionToSql(Map<String, Object> params) {
+    // todo - server side implementation
+    return remoteCall("OpenAIApi", "convertQuestionToSql", params);
+  }
 }

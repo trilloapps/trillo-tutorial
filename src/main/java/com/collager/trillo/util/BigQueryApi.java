@@ -202,12 +202,6 @@ public class BigQueryApi extends BaseApi {
 
   }
 
-  public static Result importCSVbyURIIntoTable(String datasetName, String tableName,
-                                               String sourceUri, List<Map<String, Object>> schema, int numberOfRowsToSkip) {
-    return remoteCallAsResult("BigQueryApi", "importCSVbyURIIntoTable", datasetName, tableName,
-      sourceUri, schema, numberOfRowsToSkip);
-  }
-
   public static Result importJSONbyURIIntoTable(String datasetName, String tableName,
                                                 String sourceUri, List<Map<String, Object>> schema) {
     Map body = new HashMap();
@@ -239,6 +233,11 @@ public class BigQueryApi extends BaseApi {
       datasetName, tableName, bucketFileName);
   }
 
+  public static Result importCSVbyURIIntoTable(String datasetName, String tableName,
+                                               String sourceUri, List<Map<String, Object>> schema, int numberOfRowsToSkip) {
+    return remoteCallAsResult("BigQueryApi", "importCSVbyURIIntoTable", datasetName, tableName,
+      sourceUri, schema, numberOfRowsToSkip);
+  }
 
 
 }

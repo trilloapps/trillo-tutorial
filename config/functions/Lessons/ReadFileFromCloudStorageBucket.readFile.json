@@ -1,8 +1,0 @@
-{
-  "functionName" : "ReadFileFromCloudStorageBucket",
-  "methodName" : "readFile",
-  "parameters" : {
-  	"bucketName" : "trillo-tutorial",
-    "sourceFilePath" : "DummyFiles/GlobalWarming.txt"
-  }
-}

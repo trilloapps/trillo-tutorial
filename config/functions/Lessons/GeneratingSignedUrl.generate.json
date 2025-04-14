@@ -1,8 +1,0 @@
-{
-  "functionName" : "GeneratingSignedUrl",
-  "methodName" : "generate",
-  "parameters" : {
-  	"bucketName" : "trillo-tutorial",
-    "sourceFilePath" : "DummyFiles/GlobalWarming.txt"
-  }
-}

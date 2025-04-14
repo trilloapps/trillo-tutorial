@@ -12,7 +12,9 @@
 package com.collager.trillo.util;
 
 import java.lang.invoke.MethodHandles;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.LoggerFactory;
@@ -455,4 +457,120 @@ public class LogApi {
       cl.error(msg);
     }
   }
+  
+//Doc related logs
+  
+ public static final void docAuditInfo(String action, String summary, Object detail, Map<String, Object> doc, Object... args) {
+   Object[] args2 = makeArgs(args, doc);
+   LogApi.auditInfo(action, summary, detail, null, args2);
+ }
+ 
+ public static final void docAuditWarn(String action, String summary, Object detail, Map<String, Object> doc, Object... args) {
+   Object[] args2 = makeArgs(args, doc);
+   LogApi.auditWarn(action, summary, detail, null, args2);
+ }
+ 
+ public static final void docAuditError(String action, String summary, Object detail, Map<String, Object> doc, Object... args) {
+   Object[] args2 = makeArgs(args, doc);
+   LogApi.auditError(action, summary, detail, null, args2);
+ }
+ 
+ public static final void docAuditCritical(String action, String summary, Object detail, Map<String, Object> doc, Object... args) {
+   Object[] args2 = makeArgs(args, doc);
+   LogApi.auditCritical(action, summary, detail, null, args2);
+ }
+ 
+ public static final Result docAuditInfoR(String action, String summary, Object detail, Map<String, Object> doc, Object... args) {
+   Object[] args2 = makeArgs(args, doc);
+   return LogApi.auditInfoR(action, summary, detail, null, args2);
+ }
+ 
+ public static final Result docAuditWarnR(String action, String summary, Object detail, Map<String, Object> doc, Object... args) {
+   Object[] args2 = makeArgs(args, doc);
+   return LogApi.auditWarnR(action, summary, detail, null, args2);
+ }
+ 
+ public static final Result docAuditErrorR(String action, String summary, Object detail, Map<String, Object> doc, Object... args) {
+   Object[] args2 = makeArgs(args, doc);
+   return LogApi.auditErrorR(action, summary, detail, null, args2);
+ }
+ 
+ public static final Result docAuditCriticalR(String action, String summary, Object detail, Map<String, Object> doc, Object... args) {
+   Object[] args2 = makeArgs(args, doc);
+   return LogApi.auditCriticalR(action, summary, detail, null, args2);
+ }
+ 
+
+ public static final void docAuditInfo2(String action, String summary, Map<String, Object> doc, Object... args) {
+   Object[] args2 = makeArgs(args, doc);
+   LogApi.auditInfo2(action, summary, args2);
+ }
+ 
+ public static final void docAuditWarn2(String action, String summary, Map<String, Object> doc, Object... args) {
+   Object[] args2 = makeArgs(args, doc);
+   LogApi.auditWarn2(action, summary, args2);
+ }
+ 
+ public static final void docAuditError2(String action, String summary, Map<String, Object> doc, Object... args) {
+   Object[] args2 = makeArgs(args, doc);
+   LogApi.auditError2(action, summary, args2);
+ }
+ 
+ public static final void docAuditCritical2(String action, String summary, Map<String, Object> doc, Object... args) {
+   Object[] args2 = makeArgs(args, doc);
+   LogApi.auditCritical2(action, summary, args2);
+ }
+ 
+ public static final Result docAuditInfo2R(String action, String summary, Map<String, Object> doc, Object... args) {
+   Object[] args2 = makeArgs(args, doc);
+   return LogApi.auditInfo2R(action, summary, args2);
+ }
+ 
+ public static final Result docAuditWarn2R(String action, String summary, Map<String, Object> doc, Object... args) {
+   Object[] args2 = makeArgs(args, doc);
+   return LogApi.auditWarn2R(action, summary, args2);
+ }
+ 
+ public static final Result docAuditError2R(String action, String summary, Map<String, Object> doc, Object... args) {
+   Object[] args2 = makeArgs(args, doc);
+   return LogApi.auditError2R(action, summary, args2);
+ }
+ 
+ public static final Result docAuditCritical2R(String action, String summary, Map<String, Object> doc, Object... args) {
+   Object[] args2 = makeArgs(args, doc);
+   return LogApi.auditCritical2R(action, summary, args2);
+ }
+
+ private static Object[] makeArgs(Object[] args, Map<String, Object> doc) {
+   if (doc == null) {
+     return args;
+   }
+   List<Object> l = new ArrayList<>();
+   if (args != null) {
+     for (Object o : args) {
+       l.add(o);
+     }
+   }
+   if (!l.contains("fileName")) {
+     l.add("fileName");
+     l.add("" + doc.get("fileName"));
+   }
+   if (doc.containsKey("folderPath") && !l.contains("folderPath")) {
+     l.add("folder");
+     l.add("" + doc.get("folderPath"));
+   }
+   if (!l.contains("docId")) {
+     l.add("docId");
+     l.add("" + doc.get("id"));
+   }
+   if (!l.contains("folderId")) {
+     l.add("folderId");
+     l.add("" + doc.get("folderId"));
+   }
+   Object[] args2 = new Object[l.size()];
+   for (int i=0; i<l.size(); i++) {
+     args2[i] = l.get(i);
+   }
+   return args2;
+ }
 }
